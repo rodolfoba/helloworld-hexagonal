@@ -6,15 +6,18 @@ import java.util.Random;
 public class GreetingService {
 
     private final GreetingRepository repository;
-    
+
     public GreetingService(GreetingRepository repository) {
         this.repository = repository;
     }
-    
-    public Greeting greetVisitor(String visitorIp) {
+
+    public Greeting greetVisitor(Visitor visitor) {
         List<GreetingMessage> messages = repository.findAllMessages();
         GreetingMessage message = messages.get(new Random().nextInt(messages.size()));
-        return new Greeting(message, visitorIp);
+        
+        Greeting greeting = new Greeting(message, visitor);
+        repository.register(greeting);
+        return greeting;
     }
-    
+
 }

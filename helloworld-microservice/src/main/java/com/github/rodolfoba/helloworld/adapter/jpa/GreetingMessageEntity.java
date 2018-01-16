@@ -1,6 +1,7 @@
 package com.github.rodolfoba.helloworld.adapter.jpa;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ public class GreetingMessageEntity implements Serializable {
 
     @Id
     @Column(name = "id")
-    private String id;
+    private UUID id;
     
     @Column(name = "text")
     private String message;
@@ -24,11 +25,11 @@ public class GreetingMessageEntity implements Serializable {
         super();
     }
     
-    public String getId() {
+    public UUID getId() {
         return id;
     }
     
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
     

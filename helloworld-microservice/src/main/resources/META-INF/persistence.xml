@@ -8,7 +8,8 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
-
+	
+		<class>com.github.rodolfoba.helloworld.adapter.jpa.GreetingEntity</class>
 		<class>com.github.rodolfoba.helloworld.adapter.jpa.GreetingMessageEntity</class>
 
 		<properties>
