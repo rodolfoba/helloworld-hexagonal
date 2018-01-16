@@ -1,10 +1,14 @@
 package com.github.rodolfoba.helloworld.application;
 
+import java.time.LocalDateTime;
+
+import com.github.rodolfoba.helloworld.application.GreetVisitorUseCase.Input;
 import com.github.rodolfoba.helloworld.domain.GreetingRepository;
 import com.github.rodolfoba.helloworld.domain.GreetingService;
+import com.github.rodolfoba.helloworld.domain.Visitor;
 import com.github.rodolfoba.helloworld.infrastructure.logging.LoggingService;
 
-public class GreetVisitorUseCase implements UseCase<GreetVisitorCommand, String> {
+public class GreetVisitorUseCase implements UseCase<Input, String> {
 
     private final GreetingRepository repository;
     private final GreetingService service;
@@ -17,14 +21,19 @@ public class GreetVisitorUseCase implements UseCase<GreetVisitorCommand, String>
     }
     
     @Override
-    public String execute(GreetVisitorCommand command) {
+    public String execute(Input input) {
         loggingService.log("Executing " + this.getClass().getSimpleName());
-        return service.greetVisitor(command.getVisitor()).getValue();
+        return service.greetVisitor(input.getVisitor()).getValue();
     }
     
     public static class Config {
         public GreetingRepository greetingRepository;
         public LoggingService loggingService;
+    }
+    
+    public static interface Input {
+        public Visitor getVisitor();
+        public LocalDateTime getVisitTime();
     }
 
 }

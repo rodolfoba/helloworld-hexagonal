@@ -12,8 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import com.github.rodolfoba.helloworld.adapter.rest.config.RestAdapterConstants;
 import com.github.rodolfoba.helloworld.application.GreetingApplicationFactory;
-import com.github.rodolfoba.helloworld.application.ListGreetingMessagesCommand;
 import com.github.rodolfoba.helloworld.application.ListGreetingMessagesUseCase;
 import com.github.rodolfoba.helloworld.domain.Visitor;
 
@@ -34,10 +34,10 @@ public class ListGreetingMessagesRestAdapter {
         ListGreetingMessagesUseCase useCase = factory.createListGreetingMessagesUseCase();
         requestIP = request.getRemoteAddr();
         requestUserAgent = request.getHeader("User-Agent");
-        return useCase.execute(this.new Command());
+        return useCase.execute(this.new ListGreetingMessagesUseCaseInput());
     }
 
-    class Command implements ListGreetingMessagesCommand {
+    class ListGreetingMessagesUseCaseInput implements ListGreetingMessagesUseCase.Input {
 
         @Override
         public Visitor getVisitor() {
